@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">WiproPOC</string>
-    <string name="network_Call">Network call</string>
+    <string name="network_call">Network call</string>
     <string name="response">Response</string>
     <string name="error">Error</string>
+    <string name="error_message">Something went wrong</string>
+    <string name="no_data_available">Data not Available</string>
+    <string name="internet_unavailable">Please check your Internet</string>
+    <string name="image_error">Unable to load image from url</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.test.pocwipro.network
+package com.test.wipropoc.network
 
 
 import com.google.gson.FieldNamingPolicy
@@ -6,7 +6,6 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.test.wipropoc.R
 import com.test.wipropoc.util.Logger
-
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -66,7 +65,7 @@ object APIFactory {
     private val httpLogger: HttpLoggingInterceptor.Logger by lazy {
         object : HttpLoggingInterceptor.Logger {
             override fun log(message: String) {
-                Logger.v(R.string.network_Call, "$message")
+                Logger.v(R.string.network_call, "$message")
 
             }
         }

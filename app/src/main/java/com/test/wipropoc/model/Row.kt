@@ -1,5 +1,4 @@
-package com.test.pocwipro.modal
-
+package com.test.wipropoc.model
 
 import com.google.gson.annotations.SerializedName
 

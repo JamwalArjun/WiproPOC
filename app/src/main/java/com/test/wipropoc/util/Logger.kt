@@ -1,13 +1,12 @@
 package com.test.wipropoc.util
 
 import android.util.Log
-import com.test.wipropoc.R
 import com.test.wipropoc.WiproPocApplication
 
 class Logger {
 
     companion object {
-        private  var enableLog: Boolean = com.test.wipropoc.BuildConfig.DEBUG
+        private var enableLog: Boolean = com.test.wipropoc.BuildConfig.DEBUG
         fun isEnableLog(): Boolean {
             return enableLog
         }
@@ -15,7 +14,6 @@ class Logger {
         fun setEnableLog(enableLog: Boolean) {
             this.enableLog = enableLog
         }
-
 
         fun e(tag: String?, msg: String?) {
             if (isEnableLog()) Log.e(tag, msg)
