@@ -29,13 +29,12 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="@dimen/row_item_margin"
                 android:paddingBottom="@dimen/row_item_margin"
-                android:layout_marginLeft="@dimen/row_item_margin"
+                android:layout_marginStart="@dimen/row_item_margin"
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:text="@{row.title}"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/title_text"
-                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryDark"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                 app:layout_constraintBottom_toTopOf="@id/description"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
@@ -49,12 +48,10 @@
                 android:layout_marginRight="@dimen/row_item_margin"
                 android:text="@{row.description}"
                 android:visibility="@{row.description == null ? View.GONE : View.VISIBLE}"
-                android:textSize="@dimen/description_text"
-                android:textColor="@color/colorBlack"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/image"
                 app:layout_constraintTop_toBottomOf="@id/title"
-
 
                 />
 
@@ -79,8 +76,8 @@
                 android:id="@+id/imageViewArrow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/row_item_margin"
-                android:layout_marginStart="@dimen/row_item_margin"
+                android:padding="@dimen/row_item_margin"
+                android:scaleType="fitXY"
                 android:src="@drawable/arrow_forward"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"

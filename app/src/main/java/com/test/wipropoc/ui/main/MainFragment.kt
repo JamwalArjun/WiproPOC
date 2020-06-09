@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.annotation.VisibleForTesting
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -25,7 +27,8 @@ class MainFragment : Fragment() {
     }
 
     private lateinit var rowRecyclerViewAdapter: RowRecyclerViewAdapter
-    private val mainViewModel: MainViewModel by viewModels()
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+     val mainViewModel: MainViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
        val mainFragmentBinding:MainFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.main_fragment,container,false)
@@ -43,13 +46,15 @@ class MainFragment : Fragment() {
             )
         )
         swipeContainer.setOnRefreshListener {
-            mainViewModel.getData()
-            observeLiveDataFromViewModel()
+            if (Util.isNetworkAvailable(activity)) {
+                mainViewModel.getData()
+                observeLiveDataFromViewModel()
+            }else{
+                Toast.makeText(activity,R.string.internet_unavailable,Toast.LENGTH_LONG).show()
+            }
             swipeContainer.isRefreshing = false
         }
         makeNetworkCall()
-        observeLiveDataFromViewModel()
-
     }
     /*
     * Call the API when internet available to get data in view model
@@ -58,6 +63,7 @@ class MainFragment : Fragment() {
         if (Util.isNetworkAvailable(activity)) {
             progressIndicator.visibility = View.VISIBLE
             mainViewModel.getData()
+            observeLiveDataFromViewModel()
         } else {
             recyclerView.visibility = View.GONE
             tvError.visibility = View.VISIBLE
@@ -70,8 +76,8 @@ class MainFragment : Fragment() {
     * This method observe data from live data present in view model and set to recyclerview or show error message
     */
     private fun observeLiveDataFromViewModel() {
-        mainViewModel.liveDataTitle.observe(viewLifecycleOwner, Observer { activity?.title = it })
-        mainViewModel.screenStateLiveData.observe(viewLifecycleOwner, Observer { it ->
+        mainViewModel.titleLive.observe(viewLifecycleOwner, Observer { activity?.title = it })
+        mainViewModel.screenStateLive.observe(viewLifecycleOwner, Observer { it ->
             progressIndicator.visibility = View.GONE
             if (it.rows.isEmpty()) {
                 it.error.let {

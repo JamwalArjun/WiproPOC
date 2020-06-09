@@ -2,7 +2,7 @@
 <resources>
     <dimen name="row_item_margin">5dp</dimen>
     <dimen name="title_text">20sp</dimen>
-    <dimen name="description_text">14sp</dimen>
+    <dimen name="description_text">17sp</dimen>
     <dimen name="row_margin">2dp</dimen>
 
 </resources>
