@@ -1,9 +1,9 @@
-package com.test.wipropoc.ui.main
+package com.test.wipropoc.ui.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.library.baseAdapters.BR
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -11,14 +11,13 @@ import com.test.wipropoc.R
 import com.test.wipropoc.databinding.RowItemBinding
 import com.test.wipropoc.model.Row
 
-class RowRecyclerViewAdapter(rowList: List<Row>) :
+/**
+ * This class is a Adapter class for RecyclerView
+ *
+ * @property rowList The list of row to be displayer
+ */
+class RowRecyclerViewAdapter(private var rowList: List<Row>) :
     ListAdapter<Row, RowRecyclerViewAdapter.ViewHolder>(DiffCallback()) {
-
-    private var rowList: ArrayList<Row>
-
-    init {
-        this.rowList = rowList as ArrayList<Row>
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val rowItemBinding = DataBindingUtil.inflate<RowItemBinding>(
@@ -36,9 +35,8 @@ class RowRecyclerViewAdapter(rowList: List<Row>) :
         return list.size
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.rowItemBinding.row = rowList[position]
-    }
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
+        holder.bind(rowList[position])
 
     /**
      * set data to list
@@ -50,10 +48,16 @@ class RowRecyclerViewAdapter(rowList: List<Row>) :
 
     /**
      * View holder class of adapter  items
-     * @param rowItemBinding item view
+     *
+     * @property rowItemBinding
      */
-    class ViewHolder(val rowItemBinding: RowItemBinding) :
-        RecyclerView.ViewHolder(rowItemBinding.root)
+    class ViewHolder(private val rowItemBinding: RowItemBinding) :
+        RecyclerView.ViewHolder(rowItemBinding.root) {
+        fun bind(data: Any) {
+            rowItemBinding.setVariable(BR.row, data)
+            rowItemBinding.executePendingBindings()
+        }
+    }
 
     /**
      * DiffUtil compare the item views

@@ -5,17 +5,15 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.IdlingRegistry
-import androidx.test.espresso.action.ViewActions.scrollTo
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
-import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
-import com.test.wipropoc.ui.main.MainFragment
-import com.test.wipropoc.ui.main.RowRecyclerViewAdapter
+import com.test.wipropoc.ui.activities.MainActivity
+import com.test.wipropoc.ui.fragment.MainFragment
+import com.test.wipropoc.ui.adapter.RowRecyclerViewAdapter
 import junit.framework.Assert.assertFalse
 
 import junit.framework.Assert.assertTrue
@@ -82,9 +80,9 @@ class MainFragmentTest {
     }
 
     /**
-     *  Extension method on Livedata over ObserveForever
+     *  Extension method on LiveData over ObserveForever
      */
-    fun <T> LiveData<T>.observeOnce(observer: (T) -> Unit) {
+    private fun <T> LiveData<T>.observeOnce(observer: (T) -> Unit) {
         observeForever(object: Observer<T> {
             override fun onChanged(value: T) {
                 removeObserver(this)

@@ -65,7 +65,7 @@ object APIFactory {
     private val httpLogger: HttpLoggingInterceptor.Logger by lazy {
         object : HttpLoggingInterceptor.Logger {
             override fun log(message: String) {
-                Logger.v(R.string.network_call, "$message")
+                Logger.v(R.string.network_call, message)
 
             }
         }

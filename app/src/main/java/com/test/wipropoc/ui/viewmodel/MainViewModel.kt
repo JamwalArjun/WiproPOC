@@ -1,4 +1,4 @@
-package com.test.wipropoc.ui.main
+package com.test.wipropoc.ui.viewmodel
 
 
 import androidx.annotation.VisibleForTesting
@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.test.wipropoc.R
-import com.test.wipropoc.WiproPocApplication
+import com.test.wipropoc.application.WiproPocApplication
 import com.test.wipropoc.model.ApiResponse
 import com.test.wipropoc.model.Row
 import com.test.wipropoc.model.ScreenState
@@ -16,9 +16,14 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * MainViewModel used as a communication layer between MainFragment
+ *
+ */
 class MainViewModel : ViewModel() {
 
     private val liveDataTitle = MutableLiveData<String>()
+
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     val screenStateLiveData = MutableLiveData<ScreenState>()
     private val screenState: ScreenState = ScreenState()
@@ -29,7 +34,7 @@ class MainViewModel : ViewModel() {
     /*
     * This method to fetch data from API
     */
-    fun getData() {
+    fun getDataFromNetwork() {
         val data = APIFactory.getApi().fetchAPIAsync()
         data.enqueue(callback)
     }

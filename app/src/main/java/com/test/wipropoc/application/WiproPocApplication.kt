@@ -1,4 +1,4 @@
-package com.test.wipropoc
+package com.test.wipropoc.application
 
 import android.app.Application
 import android.content.Context
@@ -17,7 +17,4 @@ class WiproPocApplication : Application() {
         }
     }
 
-    override fun onCreate() {
-        super.onCreate()
-    }
 }

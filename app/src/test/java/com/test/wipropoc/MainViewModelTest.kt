@@ -4,14 +4,13 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import com.test.wipropoc.model.Row
 import com.test.wipropoc.model.ScreenState
-import com.test.wipropoc.ui.main.MainViewModel
+import com.test.wipropoc.ui.viewmodel.MainViewModel
 import org.junit.Assert
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito
-import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner
 import java.util.*
 

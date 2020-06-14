@@ -1,13 +1,12 @@
 package com.test.wipropoc.util
 
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import com.test.wipropoc.R
-import com.test.wipropoc.WiproPocApplication
+import com.test.wipropoc.application.WiproPocApplication
 
 
 class BindingUtils {
@@ -17,15 +16,17 @@ class BindingUtils {
         fun showImage(imageView: ImageView, url: String) {
             if (!url.isNullOrEmpty()) {
                 imageView.visibility = View.GONE
-                Picasso.with(imageView.context).load(url)
+                Picasso.with(imageView.context)
+                    .load(url)
+                    .placeholder(R.drawable.placeholder)
+                    .error(R.drawable.placeholder)
                     .into(imageView, object : Callback {
                         override fun onSuccess() {
                             imageView.visibility = View.VISIBLE
                         }
 
                         override fun onError() {
-                           Logger.e(R.string.error,WiproPocApplication.applicationContext().getString(R.string.image_error))
-                            imageView.visibility = View.GONE
+                            Logger.e(R.string.error, WiproPocApplication.applicationContext().getString(R.string.image_error))
                         }
 
                     })

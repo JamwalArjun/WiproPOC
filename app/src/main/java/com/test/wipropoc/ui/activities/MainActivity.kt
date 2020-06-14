@@ -1,8 +1,9 @@
-package com.test.wipropoc
+package com.test.wipropoc.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.test.wipropoc.ui.main.MainFragment
+import com.test.wipropoc.R
+import com.test.wipropoc.ui.fragment.MainFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -11,8 +12,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.main_activity)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                    .replace(R.id.container, MainFragment.newInstance())
-                    .commitNow()
+                .replace(R.id.container, MainFragment.newInstance())
+                .commitNow()
         }
     }
 }

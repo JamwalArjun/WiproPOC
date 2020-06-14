@@ -7,4 +7,6 @@
     <string name="no_data_available">Data not Available</string>
     <string name="internet_unavailable">Please check your Internet</string>
     <string name="image_error">Unable to load image from url</string>
+    <string name="image_related_to_content">Image related to content</string>
+    <string name="forward_arrow_image">Forward Arrow Image</string>
 </resources>
